@@ -7,6 +7,7 @@
 // @match        http*://*:32400/*
 // @match        http*://app.plex.tv/web/*
 // @grant        none
+// @license	 MIT
 // ==/UserScript==
 
 (function() {

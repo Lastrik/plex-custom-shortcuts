@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Plex fullscreen keybinding
-// @namespace    http://tampermonkey.net/
+// @namespace    https://www.lastrik.ch/
 // @version      1.0
 // @description  Add the possibility to use the F key to enter and exit fullscreen mode in plex
 // @author       Lastrik

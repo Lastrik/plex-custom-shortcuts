@@ -14,7 +14,7 @@
     'use strict';
 
     /*
-    You can add your own shortcuts here. Syntax : [new Shortcut("<keyCode","<action>"),new Shortcut("<keyCode","<action>"),etc...]
+    You can add your own shortcuts here. Syntax : addShortcut(<keyCode>,<action>);
     List of possible actions :
     ------------------------------------
     toggleFullscreen : toggle fullscreen
@@ -22,8 +22,18 @@
     volup : volume up
     voldown : volume down
     */
-    const shortcuts = [new Shortcut("70","toggleFullscreen"),new Shortcut("75","togglePlayPause")]
-    var vid = document.getElementById("html-video");
+
+    var shortcuts = [];
+
+    /* Example shortcuts */
+    addShortcut("75","togglePlayPause");
+    addShortcut("70","toggleFullscreen");
+
+    /* Add your own here */
+
+    function addShortcut(keyCode,action){
+        shortcuts.push(new Shortcut(keyCode,action))
+    }
 
     function init(){
         if (location.hostname != 'app.plex.tv' && location.port != '32400'){
@@ -35,22 +45,29 @@
     init();
 
     function checkShortcuts(e){
-        for (var i = shortcuts.length - 1; i >= 0; i--) {
+        for (var i = 0 ; i < shortcuts.length ; i++) {
             if (shortcuts[i].keyCode == e.keyCode){
-                eval(shortcuts[i].action + "()")
+                eval(shortcuts[i].action + "()");
             }
         }
     }
 
     function volup(){
-        vid.volume += 0.1;
+        if (isVideo()) {
+            var vid = document.getElementById("html-video");
+            vid.volume += 0.1;
+        }
     }
 
     function voldown(){
-        vid.volume -= 0.1;
+        if (isVideo()) {
+            var vid = document.getElementById("html-video");
+            vid.volume -= 0.1;    
+        }
     }
 
     function togglePlayPause(){
+        var vid = document.getElementById("html-video");
         if(isVideo()){
             if(vid.paused){
                 vid.play();
@@ -98,6 +115,6 @@
 
 })();
 
-function Shortcut(keycode,action){
-    return {"keycode":keycode,"action":action};
+function Shortcut(keyCode,action){
+    return {"keyCode":keyCode,"action":action};
 }

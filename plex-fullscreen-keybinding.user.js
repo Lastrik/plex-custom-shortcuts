@@ -14,7 +14,7 @@
     'use strict';
 
     /*
-    You can add your own shortcuts here. Syntax : [{"keyCode":"<keyCode>","action":"<action>"},{"keyCode":"<keyCode>","action":"<action>"},etc...]
+    You can add your own shortcuts here. Syntax : [new Shortcut("<keyCode","<action>"),new Shortcut("<keyCode","<action>"),etc...]
     List of possible actions :
     ------------------------------------
     toggleFullscreen : toggle fullscreen

@@ -7,11 +7,23 @@
 // @match        http*://*:32400/*
 // @match        http*://app.plex.tv/web/*
 // @grant        none
-// @license	 MIT
+// @license  MIT
 // ==/UserScript==
 
 (function() {
     'use strict';
+
+    /*
+    You can add your own shortcuts here. Syntax : [{"keyCode":"<keyCode>","action":"<action>"},{"keyCode":"<keyCode>","action":"<action>"},etc...]
+    List of possible actions :
+    ------------------------------------
+    toggleFullscreen : toggle fullscreen
+    togglePlayPause : toggle play/pause
+    volup : volume up
+    voldown : volume down
+    */
+    const shortcuts = [{"keyCode":"70","action":"toggleFullscreen"},{"keyCode":"75","action":"togglePlayPause"}];
+    var vid = document.getElementById("html-video");
 
     function init(){
         if (location.hostname != 'app.plex.tv' && location.port != '32400'){
@@ -23,9 +35,28 @@
     init();
 
     function checkShortcuts(e){
-        if(e.keyCode == 70){
-            console.log("keyDown event ! " + e.keyCode);
-            toggleFullscreen();
+        for (var i = shortcuts.length - 1; i >= 0; i--) {
+            if (shortcuts[i].keyCode == e.keyCode){
+                eval(shortcuts[i].action + "()")
+            }
+        }
+    }
+
+    function volup(){
+        vid.volume += 0.1;
+    }
+
+    function voldown(){
+        vid.volume -= 0.1;
+    }
+
+    function togglePlayPause(){
+        if(isVideo()){
+            if(vid.paused){
+                vid.play();
+            }else{
+                vid.pause();
+            }
         }
     }
 
@@ -35,7 +66,6 @@
                 runPrefixMethod(document, "CancelFullScreen");
             }else{
                 runPrefixMethod(document.getElementsByClassName("video-container")[0], "RequestFullScreen");
-                console.log("Fullscreen !");
             }
         }
     }

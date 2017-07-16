@@ -22,7 +22,7 @@
     volup : volume up
     voldown : volume down
     */
-    const shortcuts = [{"keyCode":"70","action":"toggleFullscreen"},{"keyCode":"75","action":"togglePlayPause"}];
+    const shortcuts = [new Shortcut("70","toggleFullscreen"),new Shortcut("75","togglePlayPause")]
     var vid = document.getElementById("html-video");
 
     function init(){
@@ -97,3 +97,7 @@
     }
 
 })();
+
+function Shortcut(keycode,action){
+    return {"keycode":keycode,"action":action};
+}

@@ -6,6 +6,7 @@
 // @author       Lastrik
 // @match        http*://*:32400/*
 // @match        http*://app.plex.tv/web/*
+// @require      https://code.jquery.com/jquery-3.2.1.min.js
 // @grant        none
 // @license  MIT
 // ==/UserScript==
@@ -17,10 +18,12 @@
     You can add your own shortcuts here. Syntax : addShortcut(<keyCode>,<action>);
     List of possible actions :
     ------------------------------------
-    toggleFullscreen : toggle fullscreen
-    togglePlayPause : toggle play/pause
-    volup : volume up
-    voldown : volume down
+    toggleFullscreen    : toggle fullscreen
+    togglePlayPause     : toggle play/pause
+    volup               : volume up
+    voldown             : volume down
+    -------------------------------------
+    There is a special keyCode which is doubleClick in order to do action on double clicks
     */
 
     var shortcuts = [];
@@ -28,9 +31,12 @@
     /* Example shortcuts */
     addShortcut("75","togglePlayPause");
     addShortcut("70","toggleFullscreen");
+    addShortcut("doubleClick","toggleFullscreen");
 
     /* Add your own here */
 
+    
+    /* My code, touch only if you know js or you might break this script */
     function addShortcut(keyCode,action){
         shortcuts.push(new Shortcut(keyCode,action))
     }
@@ -39,8 +45,16 @@
         if (location.hostname != 'app.plex.tv' && location.port != '32400'){
             return;
         }
-        console.log("initialized Better plex keybindings");
+        $("body").dblclick(function(e){
+            for (var i = shortcuts.length - 1; i >= 0; i--) {
+                if (shortcuts[i].keyCode == "doubleClick") {
+                    e.stopImmediatePropagation();
+                    eval(shortcuts[i].action + "()");
+                }
+            }
+        });
         document.body.addEventListener('keydown',checkShortcuts);
+        console.log("initialized Better plex keybindings");
     }
     init();
 

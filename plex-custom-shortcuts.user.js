@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Plex custom shortcuts
 // @namespace    https://www.lastrik.ch/
-// @version      2.0
-// @description  Add the possibility to add custom shortcuts in plex
+// @version      2.0.1
+// @description  Add the possibility to use custom shortcuts in plex
 // @author       Lastrik
 // @match        http*://*:32400/*
 // @match        http*://app.plex.tv/web/*
@@ -15,21 +15,21 @@
     'use strict';
 
     /*
-    You can add your own shortcuts here. Syntax : addShortcut(<keyCode>,<action>);
+   You can add your own shortcuts here. Syntax : addShortcut(<keyCode>,<action>);
     List of possible actions :
     ------------------------------------
-    toggleFullscreen    : toggle fullscreen
-    togglePlayPause     : toggle play/pause
-    volup               : volume up
-    voldown             : volume down
+    toggleFullscreen    : le een
+    togglePlayPause     : le ay/pause
+    volup               : me 
+    voldown             : volume wn
     -------------------------------------
-    There is a special keyCode which is doubleClick in order to do action on double clicks
+    There is a special keyCode which is doubleClick in order to do action on double clicks. You can find which key equals which keyCode here : http://keycode.info/
     */
 
     var shortcuts = [];
 
     /* Example shortcuts */
-    addShortcut("75","togglePlayPause");
+    dShortcut("75","togglePlayPause");
     addShortcut("70","toggleFullscreen");
     addShortcut("doubleClick","toggleFullscreen");
 
@@ -38,7 +38,7 @@
     
     /* My code, touch only if you know js or you might break this script */
     function addShortcut(keyCode,action){
-        shortcuts.push(new Shortcut(keyCode,action))
+        shortcuts.push(new Shortcut(keyCode,action));
     }
 
     function init(){

@@ -11,7 +11,7 @@
 // @license  MIT
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
     /*
@@ -29,29 +29,29 @@
     var shortcuts = [];
 
     /* Example shortcuts */
-    dShortcut("75","togglePlayPause");
-    addShortcut("70","toggleFullscreen");
-    addShortcut("doubleClick","toggleFullscreen");
+    addShortcut("75", "togglePlayPause");
+    addShortcut("70", "toggleFullscreen");
+    addShortcut("doubleClick", "toggleFullscreen");
 
     /* Add your own here */
 
-    
+
     /* My code, touch only if you know js or you might break this script */
-    function addShortcut(keyCode,action){
-        shortcuts.push(new Shortcut(keyCode,action));
+    function addShortcut(keyCode, action){
+        shortcuts.push(new Shortcut(keyCode, action));
     }
 
-    function init(){
+    function init() {
         if (location.hostname != 'app.plex.tv' && location.port != '32400'){
             return;
         }
         $("body").dblclick(function(e){
-            for (var i = shortcuts.length - 1; i >= 0; i--) {
-                if (shortcuts[i].keyCode == "doubleClick") {
-                    e.stopImmediatePropagation();
-                    eval(shortcuts[i].action + "()");
-                }
-            }
+			for (var i = 0; i < shortcuts.length; i++) {
+				if (shortcuts[i].keyCode == "doubleClick") {
+					e.stopImmediatePropagation();
+					eval(shortcuts[i].action + "()");
+				}
+			}
         });
         document.body.addEventListener('keydown',checkShortcuts);
         console.log("initialized Better plex keybindings");
@@ -61,7 +61,7 @@
     function checkShortcuts(e){
         for (var i = 0 ; i < shortcuts.length ; i++) {
             if (shortcuts[i].keyCode == e.keyCode){
-                eval(shortcuts[i].action + "()");
+				eval(shortcuts[i].action + "()");
             }
         }
     }
@@ -76,7 +76,7 @@
     function voldown(){
         if (isVideo()) {
             var vid = document.getElementById("html-video");
-            vid.volume -= 0.1;    
+            vid.volume -= 0.1;
         }
     }
 

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Plex custom shortcuts
 // @namespace    https://www.lastrik.ch/
-// @version      2.0.1
+// @version      2.0.1a
 // @description  Add the possibility to use custom shortcuts in plex
 // @author       Lastrik
 // @match        http*://*:32400/*
@@ -18,10 +18,10 @@
    You can add your own shortcuts here. Syntax : addShortcut(<keyCode>,<action>);
     List of possible actions :
     ------------------------------------
-    toggleFullscreen    : le een
-    togglePlayPause     : le ay/pause
-    volup               : me 
-    voldown             : volume wn
+    toggleFullscreen    : toggle fullscreen
+    togglePlayPause     : toggle play/pause
+    volup               : volume up
+    voldown             : volume down
     -------------------------------------
     There is a special keyCode which is doubleClick in order to do action on double clicks. You can find which key equals which keyCode here : http://keycode.info/
     */

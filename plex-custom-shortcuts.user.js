@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Plex custom shortcuts
 // @namespace    https://www.lastrik.ch/
-// @version      2.0.1a
+// @version      2.1.0
 // @description  Add the possibility to use custom shortcuts in plex
 // @author       Lastrik
 // @match        http*://*:32400/*

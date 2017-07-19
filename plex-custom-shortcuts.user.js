@@ -14,8 +14,14 @@
 (function () {
     'use strict';
 
+	/*
+	This script adds a few tweaks to the pley web player. You can enable/disable them below
+	*/
+
+	var removePlayIcon = true;
+
     /*
-   You can add your own shortcuts here. Syntax : addShortcut(<keyCode>,<action>);
+   	You can add your own shortcuts here. Syntax : addShortcut(<keyCode>,<action>);
     List of possible actions :
     ------------------------------------
     toggleFullscreen    : toggle fullscreen
@@ -57,6 +63,12 @@
         console.log("initialized Better plex keybindings");
     }
     init();
+
+	function checkPrefs() {
+		if (removePlayIcon) {
+			$(".alert-player.alert-paused").remove();
+		}
+	}
 
     function checkShortcuts(e){
         for (var i = 0 ; i < shortcuts.length ; i++) {

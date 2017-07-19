@@ -59,6 +59,7 @@
 				}
 			}
         });
+		checkPrefs();
         document.body.addEventListener('keydown',checkShortcuts);
         console.log("initialized Better plex keybindings");
     }

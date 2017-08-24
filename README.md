@@ -1,3 +1,6 @@
+# DEPRECATED
+I need to make it work with the newest plex web player so for now this user script is deprecated
+
 # plex custom shortcuts
 This userscript allows you to use custom shortcuts in plex
 
